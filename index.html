@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confession for နနလေး</title>
+  <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Padauk', sans-serif;
+    }
+    body {
+      background-color: #1ecbe1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 30px 20px;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .badge {
+      background: #ff4081;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      display: inline-block;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .gif-container {
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .gif-container img {
+      max-height: 100%;
+      max-width: 100%;
+      border-radius: 12px;
+    }
+    .question {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      line-height: 1.5;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      min-height: 60px;
+    }
+    .btn {
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .btn-yes {
+      background: #ff2a6d;
+      color: white;
+      font-size: 22px;
+      padding: 12px 35px;
+      z-index: 2;
+    }
+    .btn-no {
+      background: #7b2cbf;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <div class="badge">Hello Dear My Crush 💖</div>
+    
+    <div class="gif-container">
+      <img id="main-gif" src="https://media.tenor.com/gU21wAOFB3AAAAAi/bear-kiss-bear-kisses.gif" alt="Cute Cat GIF">
+    </div>
+
+    <div class="question" id="question">မောင်မောင်ချစ်တယ်ပြောရင်ညင်းမှာလား</div>
+
+    <div class="btn-group" id="btn-group">
+      <button class="btn btn-yes" id="yesBtn" onclick="acceptLove()">YES 💕</button>
+      <button class="btn btn-no" id="noBtn" onclick="shrinkNo()">NO 🙈</button>
+    </div>
+  </div>
+
+  <script>
+    let noClickCount = 0;
+    const gifs = [
+      "https://media.tenor.com/gU21wAOFB3AAAAAi/bear-kiss-bear-kisses.gif",
+      "https://media.tenor.com/4q-vWzBshfIAAAAi/peach-and-goma-peach-goma.gif",
+      "https://media.tenor.com/y1qXy98aQ1AAAAAi/peach-cat-crying.gif",
+      "https://media.tenor.com/0uBvXgQ647MAAAAi/peach-goma.gif",
+      "https://media.tenor.com/a5Jd9s3i9q8AAAAi/sad-cat.gif",
+      "https://media.tenor.com/E1iN12RzXGEAAAAi/peach-cat.gif"
+    ];
+
+    const yesGifs = [
+      "https://media.tenor.com/L5B15r5AakAAAAAi/peach-and-goma.gif"
+    ];
+
+    function shrinkNo() {
+      noClickCount++;
+      const noBtn = document.getElementById('noBtn');
+      const yesBtn = document.getElementById('yesBtn');
+      const mainGif = document.getElementById('main-gif');
+
+      if (noClickCount < gifs.length) {
+        mainGif.src = gifs[noClickCount];
+      }
+
+      if (noClickCount === 1) {
+        noBtn.style.transform = "scale(0.8)";
+        yesBtn.style.transform = "scale(1.2)";
+      } else if (noClickCount === 2) {
+        noBtn.style.transform = "scale(0.6)";
+        yesBtn.style.transform = "scale(1.4)";
+      } else if (noClickCount === 3) {
+        noBtn.style.transform = "scale(0.4)";
+        yesBtn.style.transform = "scale(1.6)";
+      } else if (noClickCount === 4) {
+        noBtn.style.transform = "scale(0.2)";
+        yesBtn.style.transform = "scale(1.8)";
+      } else if (noClickCount >= 5) {
+        noBtn.style.display = "none";
+        yesBtn.style.transform = "scale(2)";
+      }
+    }
+
+    function acceptLove() {
+      document.getElementById('main-gif').src = yesGifs[0];
+      document.getElementById('question').innerText = "အဲ့တာကြောင့်မို့ နနလေးကိုရမ်းချစ်နေရတာ 🥰❤️";
+      document.getElementById('btn-group').style.display = "none";
+    }
+  </script>
+</body>
+</html>
